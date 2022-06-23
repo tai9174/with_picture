@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'favorites/index'
   get 'sessions/new'
   resources :favorites, only: [:create, :destroy]
   resources :sessions, only: [:new, :create, :destroy]
@@ -7,6 +8,7 @@ Rails.application.routes.draw do
     collection do
       post :confirm
     end
+    get :favorites, on: :collection
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

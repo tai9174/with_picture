@@ -6,5 +6,7 @@ class CreateFavorites < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
+    # favoritesテーブルに置いてuser_idとpicture_idの組み合わせを一意性のあるものしている。
+    add_index  :favorites, [:user_id, :picture_id], unique: true
   end
 end
