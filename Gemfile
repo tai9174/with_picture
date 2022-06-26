@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.1'
 
-
+gem 'faker'
 gem 'bcrypt'
 gem 'carrierwave'
 gem 'mini_magick'
