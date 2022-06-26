@@ -15,6 +15,7 @@ skip_before_action :login_required, only: [:new, :create]
     end
   end
 
+
   def destroy
     session.delete(:user_id)
     flash[:notice] = 'ログアウトしました'
