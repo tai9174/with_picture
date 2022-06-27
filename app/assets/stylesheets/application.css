@@ -23,7 +23,8 @@ table {
 header {
   color:white;
   font-size:45px;
-  background-color:#FFCC99;
+  background: linear-gradient(#FFCC99,#FFCCCC);
+
   height:80px;
   z-index: 9999;
   top: 0px;
@@ -33,7 +34,7 @@ header {
  }
 
 footer {
-  background-color:#FFCC99;
+  background: linear-gradient(#FFCC99,#FFCCCC);
   height:50px;
   text-align:center;
  }

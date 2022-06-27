@@ -39,28 +39,24 @@ class PicturesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /pictures/1 or /pictures/1.json
   def update
+    @picture = Picture.find(params[:id])
     respond_to do |format|
       if @picture.update(picture_params)
         format.html { redirect_to picture_url(@picture), notice: "Picture was successfully updated." }
         format.json { render :show, status: :ok, location: @picture }
-        redirect_to new_picture_path
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @picture.errors, status: :unprocessable_entity }
-        render :edit
       end
     end
   end
 
-  # DELETE /pictures/1 or /pictures/1.json
   def destroy
     @picture.destroy
     respond_to do |format|
       format.html { redirect_to pictures_url, notice: "Picture was successfully destroyed." }
       format.json { head :no_content }
-      redirect_to new_picture_path
     end
   end
 
@@ -84,7 +80,7 @@ class PicturesController < ApplicationController
   def ensure_user
      @pictures = current_user.pictures
      @picture = @pictures.find_by(id: params[:id])
-     redirect_to new_picture_path unless @picutre
+     # redirect_to new_picture_path unless @picutre
   end
 
 end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   get 'favorites/index'
   get 'sessions/new'
   resources :favorites, only: [:create, :destroy]
@@ -7,10 +8,11 @@ Rails.application.routes.draw do
   resources :pictures do
     collection do
       post :confirm
+
     end
     get :favorites, on: :collection
   end
-  
+
   scope "(:locale)", locale: /en|ja/ do
     resources :books
   end
