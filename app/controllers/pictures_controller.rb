@@ -1,6 +1,6 @@
 class PicturesController < ApplicationController
-  before_action :ensure_user, only: %i[ show edit update destroy ]
-
+  # before_action :ensure_user, only: %i[ show edit update destroy ]
+  before_action :set_picture, only: %i[ show edit update destroy ]
   # GET /pictures or /pictures.json
   def index
     @pictures = Picture.all
@@ -30,6 +30,7 @@ class PicturesController < ApplicationController
 
     respond_to do |format|
       if @picture.save
+        PictureMailer.picture_mail(@picture).deliver
         format.html { redirect_to picture_url(@picture), notice: "Picture was successfully created." }
         format.json { render :show, status: :created, location: @picture }
       else
@@ -40,7 +41,7 @@ class PicturesController < ApplicationController
   end
 
   def update
-    @picture = Picture.find(params[:id])
+    # @picture = Picture.find(params[:id])
     respond_to do |format|
       if @picture.update(picture_params)
         format.html { redirect_to picture_url(@picture), notice: "Picture was successfully updated." }
@@ -77,10 +78,5 @@ class PicturesController < ApplicationController
       params.require(:picture).permit(:image, :image_cache,:content)
     end
 
-  def ensure_user
-     @pictures = current_user.pictures
-     @picture = @pictures.find_by(id: params[:id])
-     # redirect_to new_picture_path unless @picutre
-  end
 
 end
