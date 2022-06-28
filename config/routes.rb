@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'pictures#index'
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   get 'favorites/index'
   get 'sessions/new'
