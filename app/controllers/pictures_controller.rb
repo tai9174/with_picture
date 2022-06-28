@@ -22,6 +22,9 @@ class PicturesController < ApplicationController
 
   # GET /pictures/1/edit
   def edit
+    unless @picture.user == current_user
+      redirect_to  pictures_path
+    end
   end
 
   # POST /pictures or /pictures.json
